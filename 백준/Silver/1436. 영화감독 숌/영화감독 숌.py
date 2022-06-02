@@ -1,13 +1,12 @@
-import sys
+n=int(input())
+cnt=0
+num=1
+while True:
+    if "666" in str(num):
+        cnt=cnt+1
 
-N = int(sys.stdin.readline())
+    if cnt==n:
+        print(num)
+        break
 
-order = 0
-for i in range(666, 987654321):
-    for s in range(0, len(str(i))-2):
-        if str(i)[s:s+3] == '666':
-            order += 1
-            if order == N:
-                print(i)
-                exit()
-            break
+    num=num+1
