@@ -13,12 +13,7 @@ public class Main {
 
         //만약 입력 문자열의 맨 앞이나 맨 뒤에 공백이 있다면, StringTokenizer는 이 공백을 무시하고 토큰을 추출한다.
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int count = 0;
-        while (st.hasMoreTokens()) {
-            st.nextToken();
-            count += 1;
-        }
-        bw.write(count + "");
+        bw.write(st.countTokens() + "");
 
         br.close();
         bw.flush();
