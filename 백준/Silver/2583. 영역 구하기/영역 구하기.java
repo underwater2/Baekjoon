@@ -33,7 +33,6 @@ public class Main {
     static int N;
     static int K;
     static int[][] arr;
-    static int[][] visited;
     static int count;
     static ArrayList<Integer> area = new ArrayList<>();
     static Stack<Node> s = new Stack<>();
@@ -51,7 +50,6 @@ public class Main {
         K = Integer.parseInt(st.nextToken());
 
         arr = new int[M][N];
-        visited = new int[M][N];
 
         int lx;
         int ly;
@@ -66,14 +64,13 @@ public class Main {
             for (int jj = rx-1; jj >= lx; jj--) {
                 for (int ii = M-ry; ii < M-ly; ii++) {
                     arr[ii][jj] = 1;
-                    visited[ii][jj] = 1;
                 }
             }
         }
 
         for (int i = 0; i < M; i++) {
             for (int j = 0; j < N; j++) {
-                if (arr[i][j] == 0 && visited[i][j] == 0) {
+                if (arr[i][j] == 0) {
                     dfs(i, j);
                 }
             }
@@ -94,7 +91,7 @@ public class Main {
         count += 1;
         int areaComp = 1;
         s.push(new Node(i, j));
-        visited[i][j] = 1;
+        arr[i][j] = 1;
 
         while(!s.isEmpty()) {
 
@@ -104,9 +101,9 @@ public class Main {
                 int ndi = now.getI() + di[t];
                 int ndj = now.getJ() + dj[t];
                 if (0 <= ndi && ndi < M && 0 <= ndj && ndj < N) {
-                    if (visited[ndi][ndj] == 0 && arr[ndi][ndj] == 0) {
+                    if (arr[ndi][ndj] == 0) {
                         s.push(new Node(ndi, ndj));
-                        visited[ndi][ndj] = 1;
+                        arr[ndi][ndj] = 1;
                         areaComp += 1;
                     }
                 }
