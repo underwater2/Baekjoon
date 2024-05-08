@@ -1,20 +1,19 @@
 from collections import deque
 
+def dfs(i, n, visited, computers):
+    visited[i] = 1
+    for t in range(0, n):
+        if visited[t] == 0 and computers[i][t] == 1:
+            dfs(t, n, visited, computers)
+            
+    
 def solution(n, computers):
     ncount = 0
     visited = [0] * n
-    q = deque()
     for i in range(0, n):
         if visited[i] == 0:
-            q.append(i)
-            visited[i] = 1
+            # DFS
+            dfs(i, n, visited, computers)
             ncount += 1
-        # BFS
-        while q:
-            now = q.popleft()
-            for t in range(0, n):
-                if visited[t] == 0 and computers[now][t] == 1:
-                    q.append(t)
-                    visited[t] = 1
 
     return ncount
